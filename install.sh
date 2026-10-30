@@ -14,14 +14,19 @@ import lzma
 import xml.etree.ElementTree as ET
 
 WELCOME_MESSAGE = """
-============================================================
-  WELCOME TO THE deliciOS Rhapsody DEVELOPMENT CLI AND SDK        
-============================================================
-                            hello.                          
+____________________________________________________________
+
+  welcome to the deliciOS Rhapsody development CLI & SDK        
+  
+____________________________________________________________
+                            
+                            hello.  
+                            
  Environment fully initialized cross-platform.
  Architecture Context: aarch64 (via emulation/chroot mapping)
  Type 'exit' to return to your native host terminal.
-============================================================
+ 
+____________________________________________________________
 """
 
 def detect_host():
