@@ -43,10 +43,12 @@ The `install.sh` shell script dynamically adapts to your host ecosystem, configu
 
 1. Launch your native Terminal application and change your working directory to the SDK path.
 2. Grant execution permission to the deployment tool:
+
    ```bash
    chmod +x install.sh
    ```
 3. Initialize the development environment:
+
    ```bash
    ./install.sh
    ```
@@ -56,6 +58,7 @@ The `install.ps1` script validates host privileges, interfaces with Docker Deskt
 
 1. Launch **PowerShell** and navigate to your local repository directory.
 2. Run the initialization procedure:
+
    ```powershell
    .\install.ps1
    ```
@@ -78,13 +81,10 @@ uname -m
 
 ## Developer Workflow
 
-1. **Entering Your Workspace:** To enter the home directory, run
-```zsh
-cd /home/steve-kiwifruit
-```
-2. **Seamless Resumption:** The setup scripts double as your daily launch tools. Running `./install.sh` or `.\install.ps1` again will instantly drop you back into your existing developer session.
-3. **Binary Generation:** Once inside the active Kiwi target shell context, engage your required compilation tooling sequences (`gcc`, `make`, `cmake`) natively as if you were running directly on physical Kiwi hardware.
-4. **Session Teardown:** To cleanly detach from the container and return to your native host computer environment, simply execute:
+1. **Seamless Resumption:** The setup scripts double as your daily launch tools. Running `./install.sh` or `.\install.ps1` again will instantly drop you back into your existing developer session.
+2. **Binary Generation:** Once inside the active Kiwi target shell context, engage your required compilation tooling sequences (`gcc`, `make`, `cmake`) natively as if you were running directly on physical Kiwi hardware.
+3. **Session Teardown:** To cleanly detach from the container and return to your native host computer environment, simply execute:
+
    ```zsh
    exit
    ```
