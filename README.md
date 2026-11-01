@@ -78,7 +78,7 @@ uname -m
 
 ## Developer Workflow
 
-1. **Entering Your Workspace** To enter the home directory, run
+1. **Entering Your Workspace:** To enter the home directory, run
 ```zsh
 cd /home/steve-kiwifruit
 ```
