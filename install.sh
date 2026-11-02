@@ -11,11 +11,11 @@ show_welcome() {
     cat << 'EOF'
 ____________________________________________________________
 
-       welcome to the deliciOS Rhapsody Development Kit        
+        welcome to the deliciOS Rhapsody Development Kit        
   
 ____________________________________________________________
                             
-                             hello.  
+                              hello.  
                             
  Environment initialized successfully.
  Cross-platform architecture context: aarch64 (via Docker).
@@ -47,11 +47,16 @@ if [ "$OS_NAME" = "Linux" ] && [ "$ARCH" = "x86_64" ]; then
     fi
 fi
 
-# 3. Check and Import the RootFS
+# 3. Check, Reconstruct, and Import the RootFS
 if ! docker images --format "{{.Repository}}:{{.Tag}}" | grep -q "^${IMAGE_NAME}$"; then
     if [ ! -f "$TAR_FILE" ]; then
-        echo "[!] Error: ${TAR_FILE} not found in current directory."
-        exit 1
+        if ls "${TAR_FILE}.part_"* >/dev/null 2>&1; then
+            echo "[*] First time setup: Rebuilding ${TAR_FILE} from repository chunks..."
+            cat "${TAR_FILE}.part_"* > "$TAR_FILE"
+        else
+            echo "[!] Error: Neither ${TAR_FILE} nor split chunks (${TAR_FILE}.part_*) were found."
+            exit 1
+        fi
     fi
     echo "[*] First time setup: Importing ${TAR_FILE} into Docker... This may take a few minutes."
     docker import "$TAR_FILE" "$IMAGE_NAME"

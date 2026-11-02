@@ -10,11 +10,11 @@ function Show-Welcome {
     $welcomeText = @"
 ____________________________________________________________
 
-       welcome to the deliciOS Rhapsody Development Kit        
+        welcome to the deliciOS Rhapsody Development Kit        
   
 ____________________________________________________________
                             
-                             hello.  
+                              hello.  
                             
  Environment initialized successfully.
  Cross-platform architecture context: aarch64 (via Docker).
@@ -40,12 +40,18 @@ try {
     exit 1
 }
 
-# 2. Check and Import the RootFS
+# 2. Check, Reconstruct, and Import the RootFS
 $imageExists = docker images -q $ImageName
 if (-not $imageExists) {
     if (-not (Test-Path $TarFile)) {
-        Write-Host "[!] Error: $TarFile not found in current directory." -ForegroundColor Red
-        exit 1
+        $chunks = Get-ChildItem -Path "." -Filter "$TarFile.part_*" -ErrorAction SilentlyContinue
+        if ($chunks) {
+            Write-Host "[*] First time setup: Rebuilding $TarFile from repository chunks..." -ForegroundColor Cyan
+            cmd /c "copy /b ${TarFile}.part_* ${TarFile}" | Out-Null
+        } else {
+            Write-Host "[!] Error: Neither $TarFile nor split chunks (${TarFile}.part_*) were found." -ForegroundColor Red
+            exit 1
+        }
     }
     Write-Host "[*] First time setup: Importing $TarFile into Docker... This may take a few minutes." -ForegroundColor Yellow
     docker import $TarFile $ImageName
