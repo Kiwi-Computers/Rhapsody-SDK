@@ -50,9 +50,9 @@ fi
 # 3. Check, Reconstruct, and Import the RootFS
 if ! docker images --format "{{.Repository}}:{{.Tag}}" | grep -q "^${IMAGE_NAME}$"; then
     if [ ! -f "$TAR_FILE" ]; then
-        if ls "${TAR_FILE}.part_"* >/dev/null 2>&1; then
+        if ls chunks/"${TAR_FILE}.part_"* >/dev/null 2>&1; then
             echo "[*] First time setup: Rebuilding ${TAR_FILE} from repository chunks..."
-            cat "${TAR_FILE}.part_"* > "$TAR_FILE"
+            cat chunks/"${TAR_FILE}.part_"* > "$TAR_FILE"
         else
             echo "[!] Error: Neither ${TAR_FILE} nor split chunks (${TAR_FILE}.part_*) were found."
             exit 1

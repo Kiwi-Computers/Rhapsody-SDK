@@ -44,10 +44,10 @@ try {
 $imageExists = docker images -q $ImageName
 if (-not $imageExists) {
     if (-not (Test-Path $TarFile)) {
-        $chunks = Get-ChildItem -Path "." -Filter "$TarFile.part_*" -ErrorAction SilentlyContinue
+        $chunks = Get-ChildItem -Path "chunks" -Filter "$TarFile.part_*" -ErrorAction SilentlyContinue
         if ($chunks) {
             Write-Host "[*] First time setup: Rebuilding $TarFile from repository chunks..." -ForegroundColor Cyan
-            cmd /c "copy /b ${TarFile}.part_* ${TarFile}" | Out-Null
+            cmd /c "copy /b chunks\${TarFile}.part_* ${TarFile}" | Out-Null
         } else {
             Write-Host "[!] Error: Neither $TarFile nor split chunks (${TarFile}.part_*) were found." -ForegroundColor Red
             exit 1
