@@ -38,7 +38,7 @@ Rhapsody-SDK/
 
 > **Prerequisite:** Ensure **Docker** (or Docker Desktop) is installed and running on your host machine before initializing the SDK.
 
-### macOS, Linux, and BSD Platforms
+### *nix Systems (macOS and Linux Platforms)
 The `install.sh` shell script dynamically adapts to your host ecosystem, configuring architecture emulation where necessary (such as on x86_64) and seamlessly importing the target environment.
 
 1. Launch your native Terminal application and change your working directory to the SDK path.
