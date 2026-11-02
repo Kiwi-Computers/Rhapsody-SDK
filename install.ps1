@@ -8,11 +8,11 @@ $TargetUser = "steve-kiwifruit"
 function Show-Welcome {
     Clear-Host
     $welcomeText = @"
-____________________________________________________________
+________________________________________________________________
 
         welcome to the deliciOS Rhapsody Development Kit        
   
-____________________________________________________________
+________________________________________________________________
                             
                               hello.  
                             
@@ -20,7 +20,7 @@ ____________________________________________________________
  Cross-platform architecture context: aarch64 (via Docker).
  Type 'exit' to return to your native host terminal.
  
-____________________________________________________________
+________________________________________________________________
 "@
     Write-Host $welcomeText -ForegroundColor Cyan
 }
